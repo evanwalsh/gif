@@ -33,6 +33,11 @@ module GIF
       end
     end
 
+    desc "list", "List all your GIFs"
+    def list
+      say all_gifs.join("\n")
+    end
+
     private
     def all_gifs
       Dir["#{gif_directory}/**/*.gif"].map{|path| path.gsub(gif_directory + "/", '')  } 
