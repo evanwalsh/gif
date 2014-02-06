@@ -28,6 +28,7 @@ Gem::Specification.new do |s|
     "Rakefile",
     "VERSION",
     "bin/gif",
+    "gif.gemspec",
     "lib/gif.rb",
     "lib/gif/cli.rb",
     "spec/gif_spec.rb",
