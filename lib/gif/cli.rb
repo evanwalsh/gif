@@ -7,8 +7,8 @@ require 'pry'
 module GIF
   class CLI < Thor
     desc "setup OPTIONS", "Set the options for gif"
-    option :directory
-    option :prefix
+    option :directory, desc: "The directory your GIFs are stored in locally. Must be an absolute path", type: :string
+    option :prefix, desc: "The URL prefix to add to each GIF path.", type: :string
     def setup
       config['directory'] = options[:directory] 
       config['prefix'] = options[:prefix] 
