@@ -17,10 +17,11 @@ Jeweler::Tasks.new do |gem|
   gem.name = "gif"
   gem.homepage = "http://github.com/evanwalsh/gif"
   gem.license = "MIT"
-  gem.summary = %Q{TODO: one-line summary of your gem}
-  gem.description = %Q{TODO: longer description of your gem}
+  gem.summary = %Q{Get a GIF. Quickly.}
+  gem.description = %Q{Get a GIF from your collection into your clipboard for japes and goofs.}
   gem.email = "evan@massivedanger.com"
   gem.authors = ["Evan Walsh"]
+  gem.executables = ["gif"]
   # dependencies defined in Gemfile
 end
 Jeweler::RubygemsDotOrgTasks.new
