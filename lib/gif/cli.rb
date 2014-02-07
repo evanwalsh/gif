@@ -42,7 +42,7 @@ module GIF
 
     desc "list", "List all your GIFs"
     def list
-      say all_gifs.join("\n")
+      print_in_columns all_gifs
     end
 
     private
