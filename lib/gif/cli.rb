@@ -8,11 +8,16 @@ module GIF
   class CLI < Thor
     desc "setup OPTIONS", "Set the options for gif"
     option :directory, desc: "The directory your GIFs are stored in locally. Must be an absolute path", type: :string
-    option :prefix, desc: "The URL prefix to add to each GIF path.", type: :string
+    option :url_prefix, desc: "The URL prefix to add to each GIF path.", type: :string
     def setup
-      config['directory'] = options[:directory] 
-      config['prefix'] = options[:prefix] 
-      save_settings
+      if options[:directory] and options[:url_prefix]
+        config['directory'] = options[:directory] 
+        config['url_prefix'] = options[:url_prefix] 
+        save_settings
+        say "Saved settings."
+      else
+        puts config.to_yaml
+      end
     end
     
     desc "random", "Get a random GIF"
@@ -30,6 +35,8 @@ module GIF
       if gif
         copy_to_clipboard url_for(gif)
         say "Found #{gif}. Copied URL to clipboard."
+      else
+        say "No gif matching that string could be found"
       end
     end
 
@@ -48,7 +55,7 @@ module GIF
     end
 
     def url_for(gif)
-      %(#{config['prefix']}/#{gif})
+      %(#{config['url_prefix']}/#{gif})
     end
 
     def copy_to_clipboard(string)
