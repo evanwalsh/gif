@@ -9,14 +9,21 @@ module GIF
     desc "setup OPTIONS", "Set the options for gif"
     option :directory, desc: "The directory your GIFs are stored in locally. Must be an absolute path", type: :string
     option :url_prefix, desc: "The URL prefix to add to each GIF path.", type: :string
+    option :inspect, desc: "Print out the current settings", type: :boolean
     def setup
-      if options[:directory] and options[:url_prefix]
-        config['directory'] = options[:directory] 
-        config['url_prefix'] = options[:url_prefix] 
-        save_settings
-        say "Saved settings."
+      unless options[:inspect]
+        if options[:directory] and options[:url_prefix]
+          config['directory'] = options[:directory] 
+          config['url_prefix'] = options[:url_prefix] 
+          save_settings
+          say "Saved settings."
+        else
+          config['directory'] = ask("What directory are your GIFs stored in?")
+          config['url_prefix'] = ask("What is the URL prefix to add to the path of a GIF?")
+          save_settings
+        end
       else
-        puts config.to_yaml
+        say config.to_yaml
       end
     end
     
